@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/constants/constants.dart';
+import 'package:notes_app/models/note_model.dart';
 
 import 'package:notes_app/screens/edit_note.dart';
 import 'package:notes_app/screens/notes_screen.dart';
 
 void main() async {
-  runApp(const MyApp());
-
-
-  // "important" Hive From Flutter 
+  // "important" Hive From Flutter
   await Hive.initFlutter();
 
   // name of collection at DataBase
   await Hive.openBox(kNoteBox);
 
+  // Register Of New Hive  Model Which Generated Automateclly 
+  Hive.registerAdapter(NoteModelAdapter());
 
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

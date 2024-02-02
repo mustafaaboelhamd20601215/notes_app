@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/add_note_bottom_sheet.dart';
 import 'package:notes_app/widgets/custom_app_bar.dart';
@@ -20,8 +23,23 @@ class _NotesViewState extends State<NotesView> {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return const SingleChildScrollView(
-            child: AddNoteBottomSheet(),
+          return SingleChildScrollView(
+            child: BlocConsumer<AddNoteCubit, AddNoteState>(
+              listener: (context, state) {
+                if (state is AddNoteFailure) {
+                  print("Failled ${state.errorMessage}");
+                }
+
+                if (state is AddNoteSuccess) {
+                  Navigator.pop(context);
+                }
+              },
+              builder: (context, state) {
+                return ModalProgressHUD(
+                    inAsyncCall: state is AddNoteLoading ? true : false,
+                    child: const AddNoteBottomSheet());
+              },
+            ),
           );
         });
   }
