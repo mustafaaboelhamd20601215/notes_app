@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/add_note_bottom_sheet.dart';
 import 'package:notes_app/widgets/custom_app_bar.dart';
 import 'package:notes_app/widgets/note_card.dart';
 
@@ -19,122 +20,25 @@ class _NotesViewState extends State<NotesView> {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
-          return SingleChildScrollView(
-            child: SizedBox(
-              width: double.infinity,
-              height: 500,
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  FractionallySizedBox(
-                    widthFactor: .9,
-                    child: TextField(
-                        controller: title,
-                        // maxLength: 20,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                            labelText: "Title",
-
-                            // main Control Padding Around Content
-                            // contentPadding: EdgeInsets.symmetric(horizontal: 10 , vertical: 10),
-
-                            // main textFeild details
-
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-
-                            // To Control TextFeild " Before Typing"
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Color.fromARGB(255, 122, 122, 122)),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            // To Control TextFeild " After Typing"
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 255, 255, 255)),
-                            ))),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  FractionallySizedBox(
-                    widthFactor: .9,
-                    child: TextField(
-                        controller: content,
-                        // maxLength: 20,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                            labelText: "Content",
-
-                            // main Control Padding Around Content
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 50),
-
-                            // main textFeild details
-
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-
-                            // To Control TextFeild " Before Typing"
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Color.fromARGB(255, 122, 122, 122)),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            // To Control TextFeild " After Typing"
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 255, 255, 255)),
-                            ))),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  FractionallySizedBox(
-                      widthFactor: .9,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                            backgroundColor: const MaterialStatePropertyAll(
-                                Color.fromARGB(255, 1, 170, 114)),
-                            foregroundColor:
-                                const MaterialStatePropertyAll(Colors.white),
-                            shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15)))),
-                        child: const Text("Add"),
-                      )),
-                  const SizedBox(
-                    height: 30,
-                  )
-                ],
-              ),
-            ),
+          return const SingleChildScrollView(
+            child: AddNoteBottomSheet(),
           );
         });
   }
 
-  NoteModel noteModel = NoteModel(
-      title: "title",
-      subTitle: "subTitle",
-      color: const Color(0xfffecd7e),
-      createdDate: "createdDate");
+  // NoteModel noteModel = NoteModel(
+  //     title: "title",
+  //     subTitle: "subTitle",
+  //     // color:  Color(0xfffecd7e),
+  //     createdDate: "createdDate");
 
-  List<NoteModel> notesList = [
-    NoteModel(
-        title: "Note1",
-        subTitle: "subTitle",
-        color: const Color(0xfffecd7e),
-        createdDate: "createdDate")
-  ];
+  // List<NoteModel> notesList = [
+  //   NoteModel(
+  //       title: "Note1",
+  //       subTitle: "subTitle",
+  //       color: const Color(0xfffecd7e),
+  //       createdDate: "createdDate")
+  // ];
 
   @override
   void dispose() {
